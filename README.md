@@ -1,5 +1,10 @@
-# GAF
+<img width="1140" height="1140" alt="image" src="https://github.com/user-attachments/assets/284965b3-9750-4f27-9766-02faaf1a4c51" /># GAF
 This code corresponds directly to the manuscript the author has submitted to The Visual Computer at present
-首先将连续视频帧提取为数据集图片，或者使用已开源的连续视频帧数据集，然后在通过Get-shixu得到时序文件
-按照一级：images，label，series；二级：train，val。进行数据保存
-将程序中的数据集路径改为已保存的路径，即可进行实验。
+First, extract the continuous video frames into data set pictures, or use the open source continuous video frame data set, and then obtain the timing file through Get-shixu
+According to the first level: images, label, series; the second level: train, val. Save data
+Change the data set path in the program to the saved path to perform experiments.
+
+The datasets we provide are as follows：
+ https://pan.baidu.com/s/1e1RG6w59duxQtb30w5heeQ 提取码: spjv 
+
+
