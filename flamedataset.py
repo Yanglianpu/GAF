@@ -12,19 +12,13 @@ class FlameDatasetFrom3Dirs(Dataset):
     def __init__(
         self,
         root_dir,
-        split="train",          # "train" or "val"
+        split="train",          
         img_size=128,
         series_length=64,
         gaf_method="summation",
         use_augmentation=True,
     ):
-        """
-        root_dir: 数据集根目录，下面有 images/ labels/ time_series/
-        split: "train" 或 "val"
-        img_size: 图像和 GAF 的大小 (img_size x img_size)
-        series_length: 时间序列重采样到的长度
-        gaf_method: "summation" (GASF) 或 "difference" (GADF)
-        """
+
         self.root_dir = root_dir
         self.split = split
         self.img_size = img_size
@@ -47,13 +41,11 @@ class FlameDatasetFrom3Dirs(Dataset):
         for img_path in img_paths:
             basename = os.path.splitext(os.path.basename(img_path))[0]
 
-            # 假设 label 文件名为 basename + .txt / .npy / .csv 之一
             label_path = self._match_label_file(basename)
             ts_path = self._match_ts_file(basename)
 
             if label_path is None or ts_path is None:
-                # 可以选择跳过，或者抛出异常
-                # 这里选择跳过，并打印一下，你也可以改成 assert
+
                 print(f"[WARN] Missing label or time_series for {basename}, skip.")
                 continue
 
@@ -83,10 +75,7 @@ class FlameDatasetFrom3Dirs(Dataset):
             ])
 
     def _match_label_file(self, basename):
-        """
-        假设 label 是独立文件，文件名和 image 一样，只是后缀不同。
-        支持 .txt / .npy / .csv（你可以按需删减）
-        """
+
         candidates = [
             os.path.join(self.labels_dir, basename + ".txt"),
             os.path.join(self.labels_dir, basename + ".npy"),
@@ -98,9 +87,7 @@ class FlameDatasetFrom3Dirs(Dataset):
         return None
 
     def _match_ts_file(self, basename):
-        """
-        时间序列文件，假设一个样本对应一个 .npy 或 .csv 或 .txt
-        """
+
         candidates = [
             os.path.join(self.ts_dir, basename + ".npy"),
             os.path.join(self.ts_dir, basename + ".csv"),
@@ -117,17 +104,7 @@ class FlameDatasetFrom3Dirs(Dataset):
         return img
 
     def _load_label(self, label_path):
-        """
-        YOLO 检测标签 -> 图像级三分类标签：
-        0: fire
-        1: default
-        2: smoke
 
-        策略：
-        - 有 fire(0) 框 → label = 0
-        - 否则有 smoke(2) 框 → label = 2
-        - 否则 → label = 1 (default)
-        """
         # 若没有标签文件，直接当作 default
         if not os.path.exists(label_path):
             return torch.tensor(1, dtype=torch.long)
@@ -162,20 +139,15 @@ class FlameDatasetFrom3Dirs(Dataset):
         return torch.tensor(label, dtype=torch.long)
 
     def _load_series(self, ts_path):
-        """
-        加载一维时间序列
-        """
+
         if ts_path.endswith(".npy"):
             series = np.load(ts_path).astype(np.float32)
         else:
-            # 默认 csv 或 txt，每行一个值
             series = np.loadtxt(ts_path, delimiter=",", dtype=np.float32)
         return series
 
     def _resample_series(self, series):
-        """
-        将时间序列重采样到固定长度 self.series_length
-        """
+
         if len(series) == self.series_length:
             return series.astype(np.float32)
 
@@ -207,3 +179,4 @@ class FlameDatasetFrom3Dirs(Dataset):
                             image_size=self.img_size)  # (1, H, W)
 
         return img, gaf, label
+
