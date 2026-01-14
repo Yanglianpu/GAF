@@ -22,6 +22,7 @@ This repository provides the official implementation of **FlameGAF-GateNet**, a 
 ---
 ## Methods
 <img width="842" height="337" alt="image" src="https://github.com/user-attachments/assets/808a7bb9-ea69-4c31-8d03-b8b76299efd5" />
+
 RGB frames and time-series segments are processed by image and GAF branches, respectively.A gated fusion module adaptively combines image and GAF features for fire, default, and smoke classification
 
 
@@ -31,6 +32,8 @@ RGB frames and time-series segments are processed by image and GAF branches, res
 - OS: Linux/Windows/macOS
 - Python: **3.8+** (recommended: 3.9/3.10)
 - PyTorch: **[1.12.1]** (CUDA **[12.4]** if using GPU)
+
+All experiments in this study were conducted on a workstation equipped with an Intel(R) Core™ i9-14900HX CPU, 32 GB of RAM, and an NVIDIA GeForce RTX 4060 GPU with 12 GB of VRAM, running the Windows 11 operating system. The software environment was based on Python 3.12, with PyTorch 1.12.1 as the deep learning framework and Torchvision 0.15.2 as the companion vision library. CUDA version 12.4 was used for GPU acceleration. Data preprocessing and evaluation metric computation primarily relied on open-source libraries such as NumPy, scikit-learn, and Matplotlib. 
 
 ### Install
 ```bash
