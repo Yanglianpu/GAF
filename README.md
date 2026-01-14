@@ -57,6 +57,11 @@ data/
     smoke/
     normal/
 
+License
+This project is released under the MIT License. See LICENSE
+ for details.
+
+Contact
 @article{FlameGAFGateNet2026,
   title   = {Enhanced Flame and Smoke Detection via Gated Multimodal Fusion with Gramian Angular Fields},
   author  = {Yang, Lianpu},
