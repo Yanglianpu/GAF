@@ -5,7 +5,6 @@ This repository provides the official implementation of **FlameGAF-GateNet**, a 
 ✅ **This codebase is directly associated with the manuscript currently submitted to _The Visual Computer_:**  
 **“Enhanced Flame and Smoke Detection via Gated Multimodal Fusion with Gramian Angular Fields.”**
 
-If you find this repository useful, please consider citing our manuscript (see [Citation](#citation)).
 
 ---
 
@@ -28,7 +27,7 @@ If you find this repository useful, please consider citing our manuscript (see [
 ### Environment
 - OS: Linux/Windows/macOS
 - Python: **3.8+** (recommended: 3.9/3.10)
-- PyTorch: **[your version]** (CUDA **[your CUDA version]** if using GPU)
+- PyTorch: **[1.12.1]** (CUDA **[12.4]** if using GPU)
 
 ### Install
 ```bash
@@ -47,18 +46,15 @@ pip install -r requirements.txt
 ###Dataset
 ```bash
 data/
-  train/
-    fire/
-    smoke/
-    normal/
-  val/
-    fire/
-    smoke/
-    normal/
-  test/
-    fire/
-    smoke/
-    normal/
+  images/
+     train/
+     val/
+  labels/
+     train/
+     val/
+  time-series/
+     train/
+     val/
 ```
 
 ### License
