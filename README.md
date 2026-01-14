@@ -57,44 +57,9 @@ data/
     smoke/
     normal/
 
-python train.py \
-  --mode rgb \
-  --data_root data \
-  --backbone [resnet18|resnet50|efficientnet_b0] \
-  --epochs  [EPOCHS] \
-  --batch_size [BS] \
-  --lr [LR] \
-  --output_dir runs/rgb_baseline
-
-python train.py \
-  --mode gaf \
-  --data_root data \
-  --epochs  [EPOCHS] \
-  --batch_size [BS] \
-  --lr [LR] \
-  --output_dir runs/gaf_baseline
-
-python train.py \
-  --mode fusion \
-  --fusion_type gate \
-  --data_root data \
-  --rgb_backbone [resnet18|resnet50|efficientnet_b0] \
-  --gaf_backbone [resnet18|resnet50] \
-  --epochs  [EPOCHS] \
-  --batch_size [BS] \
-  --lr [LR] \
-  --output_dir runs/flamegaf_gatenet
-
-python eval.py \
-  --mode fusion \
-  --fusion_type gate \
-  --data_root data \
-  --ckpt_path runs/flamegaf_gatenet/best.pth
-
-python train.py --mode fusion --fusion_type gate --data_root data --output_dir runs/flamegaf_gatenet
 @article{FlameGAFGateNet2026,
   title   = {Enhanced Flame and Smoke Detection via Gated Multimodal Fusion with Gramian Angular Fields},
-  author  = {Yang, Lianpu and [Coauthors]},
+  author  = {Yang, Lianpu},
   journal = {The Visual Computer},
   year    = {2026},
   note    = {Manuscript submitted},
